@@ -1,0 +1,200 @@
+{
+  "startedAt": "2026-11-23T16:00:07.646Z",
+  "scope": "Local backend and configured PostgreSQL",
+  "overpass": {
+    "checks": [
+      {
+        "city": "Hyderabad",
+        "country": "India",
+        "apiHttp": 200,
+        "at": "2026-11-23T16:00:08.910Z",
+        "endpointHealth": "upstream failure",
+        "resultCount": 0,
+        "verified": false,
+        "attempt": {
+          "id": "a695eec0-4a0b-446d-9ca7-1e24f31dbd99",
+          "status": "failed",
+          "http": 502,
+          "startedAt": "2026-11-23T16:00:08.178Z",
+          "finishedAt": "2026-11-23T16:00:08.892Z",
+          "message": "Search provider returned an upstream error.",
+          "reason": "upstream_error"
+        }
+      },
+      {
+        "city": "Karimnagar",
+        "country": "India",
+        "apiHttp": 200,
+        "at": "2026-11-23T16:00:47.995Z",
+        "endpointHealth": "unverified",
+        "resultCount": 0,
+        "verified": false,
+        "attempt": {
+          "id": "ef518620-05d5-4a59-92ab-447cfc09aa34",
+          "status": "failed",
+          "http": null,
+          "startedAt": "2026-11-23T16:00:39.936Z",
+          "finishedAt": "2026-11-23T16:00:47.958Z",
+          "message": "Search provider timed out.",
+          "reason": "timeout"
+        }
+      },
+      {
+        "city": "Warangal",
+        "country": "India",
+        "apiHttp": 200,
+        "at": "2026-11-23T16:01:19.603Z",
+        "endpointHealth": "upstream failure",
+        "resultCount": 0,
+        "verified": false,
+        "attempt": {
+          "id": "a6ad6d47-aa25-4cda-85d7-bfd61fe98d95",
+          "status": "failed",
+          "http": 502,
+          "startedAt": "2026-11-23T16:01:19.025Z",
+          "finishedAt": "2026-11-23T16:01:19.579Z",
+          "message": "Search provider returned an upstream error.",
+          "reason": "upstream_error"
+        }
+      }
+    ],
+    "configured": true,
+    "issue": null,
+    "endpointHost": "overpass-api.de",
+    "minIntervalMs": 31000,
+    "prior": {
+      "id": "bbda2c1a-433b-4d50-81ee-ac4c22565ed1",
+      "status": "failed",
+      "http": 502,
+      "startedAt": "2026-11-23T15:50:36.478Z",
+      "finishedAt": "2026-11-23T15:50:37.140Z",
+      "message": "Search provider returned an upstream error.",
+      "reason": "upstream_error"
+    }
+  },
+  "controls": {
+    "scheduler": false,
+    "alerts": false,
+    "email": false,
+    "telegram": false
+  },
+  "googlePlaces": {
+    "at": "2026-11-23T16:00:08.118Z",
+    "configuredInWorkspace": true,
+    "configuredInRunningBackend": true,
+    "matchesExposedConfigurationInWorkspace": true,
+    "runningBackendStillReturnsExposedConfigurationHistory": true,
+    "revocationConfirmed": false,
+    "priorFunctionalCheck": {
+      "id": "fd128d63-0047-4086-85aa-731100983fd6",
+      "status": "verified",
+      "http": 200,
+      "startedAt": "2026-11-23T15:50:35.959Z",
+      "finishedAt": "2026-11-23T15:50:36.453Z",
+      "message": "Places API (New) returned a named listing.",
+      "reason": null,
+      "city": "Hyderabad",
+      "placeId": "ChIJC0YLTmGXyzsRlhNidNMcDh8"
+    },
+    "liveTest": null,
+    "skipReason": "The replacement key is not loaded in both the workspace and the running backend."
+  },
+  "gemini": {
+    "at": "2026-11-23T16:00:08.134Z",
+    "configured": true,
+    "model": "gemini-2.5-flash",
+    "quota": "available capacity unconfirmed",
+    "provider": "Gemini API",
+    "newGenerationRequests": 0,
+    "priorGenerationAttempt": {
+      "id": "1453e253-3e3b-4c41-9e25-06b455ad7fe9",
+      "status": "rate_limited",
+      "http": 429,
+      "startedAt": "2026-11-23T15:50:35.415Z",
+      "finishedAt": "2026-11-23T15:50:35.927Z",
+      "message": "HTTP 429. Google reports that a quota or resource limit was reached.",
+      "reason": "RESOURCE_EXHAUSTED"
+    },
+    "existingCrmRankings": 1,
+    "crmHttp": 200,
+    "originalQualification": "evidence_fallback",
+    "attemptLeadId": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+    "skipReason": "The last authenticated generation returned HTTP 429 and available quota could not be confirmed."
+  },
+  "integrity": {
+    "lead": {
+      "before": 18,
+      "after": 18,
+      "unchanged": true
+    },
+    "pitch": {
+      "before": 16,
+      "after": 16,
+      "unchanged": true
+    },
+    "auditReport": {
+      "before": 12,
+      "after": 12,
+      "unchanged": true
+    },
+    "notificationDelivery": {
+      "before": 0,
+      "after": 0,
+      "unchanged": true
+    },
+    "notification": {
+      "before": 10,
+      "after": 10,
+      "unchanged": true
+    },
+    "portfolioProject": {
+      "before": 3,
+      "after": 3,
+      "unchanged": true
+    },
+    "idealClientProfile": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    },
+    "autoHunterConfig": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    },
+    "leadDiscoverySource": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    }
+  },
+  "finishedAt": "2026-11-23T16:01:19.633Z",
+  "acceptance": "withheld",
+  "tests": {
+    "backend": {
+      "passed": 109,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 17,
+      "isolatedPostgreSQL": true
+    },
+    "frontend": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typeScript": "passed",
+    "backendProductionBuild": "passed",
+    "frontendProductionBuild": "passed"
+  },
+  "security": {
+    "at": "2026-11-23T16:02:20.200Z",
+    "scanned": {
+      "assets": 36,
+      "logs": 21,
+      "database": 109,
+      "reports": 7
+    },
+    "findings": []
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "startedAt": "2026-11-23T16:49:35.386Z",
+  "projectReportedByOwner": "AI SK",
+  "model": "gemini-2.5-flash",
+  "ownerReportedQuota": {
+    "rpm": 5,
+    "tpm": 250000,
+    "rpd": 20,
+    "displayedUsage": 0
+  },
+  "leadId": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+  "generationRequests": 1,
+  "provider": "Gemini Developer API",
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+  "result": "FAILED",
+  "lead": {
+    "name": "RL Tours and Travels | Travel agency in Hyderabad",
+    "city": "Hyderabad",
+    "originalAnalysis": "evidence_fallback"
+  },
+  "existingWebsiteInspection": {
+    "at": "2026-11-23T06:39:11.973Z",
+    "findings": [
+      {
+        "id": "images",
+        "evidence": "8 image elements on the inspected page have missing or empty alternative text."
+      },
+      {
+        "id": "navigation",
+        "evidence": "2 navigation anchors have empty or placeholder destinations in the downloaded markup."
+      }
+    ]
+  },
+  "historicalRankings": 1,
+  "providerResponse": {
+    "at": "2026-11-23T16:49:36.400Z",
+    "httpStatus": 404,
+    "transportError": "ERR_BAD_REQUEST",
+    "error": {
+      "code": 404,
+      "status": "NOT_FOUND",
+      "message": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://aistudio.google.com/docs/get-started).",
+      "retryAfter": null,
+      "retryDelay": null,
+      "reasons": [],
+      "quotaViolations": []
+    }
+  },
+  "savedVerification": {
+    "id": "be731b77-f5f2-4727-a7fc-623bfa2aa6d6",
+    "provider": "gemini",
+    "status": "failed",
+    "httpStatus": 404,
+    "finishedAt": "2026-11-23T16:49:36.410Z",
+    "reason": "NOT_FOUND",
+    "message": "HTTP 404. Google reports that the requested resource could not be found.",
+    "leadId": null,
+    "ranking": null
+  },
+  "crm": {
+    "httpStatus": 200,
+    "newRankingVisibleInApi": false,
+    "historicalRowsUnchanged": true,
+    "originalAnalysis": "evidence_fallback"
+  },
+  "integrity": {
+    "lead": {
+      "before": 18,
+      "after": 18,
+      "unchanged": true
+    },
+    "pitch": {
+      "before": 16,
+      "after": 16,
+      "unchanged": true
+    },
+    "auditReport": {
+      "before": 12,
+      "after": 12,
+      "unchanged": true
+    },
+    "notificationDelivery": {
+      "before": 0,
+      "after": 0,
+      "unchanged": true
+    },
+    "autoHunterConfig": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    },
+    "leadDiscoverySource": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    }
+  },
+  "externalOutreach": {
+    "schedulerEnabled": false,
+    "externalAlertsEnabled": false,
+    "email": false,
+    "telegram": false,
+    "deliveryRowsAfter": 0
+  },
+  "finishedAt": "2026-11-23T16:49:36.742Z"
+}

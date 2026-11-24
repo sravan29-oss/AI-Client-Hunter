@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-23T16:33:49.680Z",
+  "backendHealthHttp": 200,
+  "database": "connected",
+  "configuredModel": "gemini-2.5-flash",
+  "backendKeyChangedFromPrior429": true,
+  "backendReadiness": "untested",
+  "metadataHttp": 200,
+  "providerStatus": null,
+  "modelMetadataAvailable": true,
+  "generationMethodAdvertised": true,
+  "generationRequests": 0,
+  "projectQuotaConfirmed": false
+}

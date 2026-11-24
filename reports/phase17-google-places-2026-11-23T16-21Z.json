@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-23T16:21:29.916Z",
+  "localBackendHttp": 200,
+  "database": "connected",
+  "provider": "Google Places API (New) Text Search",
+  "oldConfigurationReplaced": true,
+  "backendVerificationHttp": 200,
+  "confirmedTestUsedReplacement": true,
+  "upstreamHttp": 200,
+  "state": "verified",
+  "reason": null,
+  "checkedAt": "2026-11-23T16:21:29.889Z",
+  "placeId": "ChIJC0YLTmGXyzsRlhNidNMcDh8",
+  "city": "Hyderabad",
+  "verificationId": "f7723d26-2f88-4f70-b309-8297a4559078",
+  "revocationConfirmed": false
+}

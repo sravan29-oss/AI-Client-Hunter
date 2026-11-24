@@ -1,0 +1,515 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum LeadStatus {
+  New
+  Analysed
+  Ready_to_Contact @map("Ready to Contact")
+  Contacted
+  Replied
+  Meeting_Scheduled @map("Meeting Scheduled")
+  Negotiation
+  Won
+  Lost
+  Qualified
+  Reviewed
+  Interested
+  Not_Interested @map("Not Interested")
+  Rejected
+  Archived
+}
+
+enum PitchChannel {
+  COLD_EMAIL
+  LINKEDIN
+  WHATSAPP
+  UPWORK_PROPOSAL
+}
+
+enum PitchStatus {
+  DRAFT
+  SENT
+  REPLIED
+  CONVERTED
+}
+
+enum FollowUpStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+model Lead {
+  id                  String        @id @default(uuid())
+  businessName        String
+  website             String?
+  country             String?       @default("India")
+  city                String?
+  industry            String        @default("Technology")
+  businessEmail       String?
+  contactName         String?
+  publicBusinessPhone String?
+  source              String        @default("Manual")
+  businessDescription String?
+  detectedProblems    String[]      @default([])
+  suggestedServices   String[]      @default([])
+  opportunityScore    Int           @default(70)
+  leadStatus          LeadStatus    @default(New)
+  notes               String?
+  discoveryDate       DateTime?     @default(now())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  // Phase 9 extensions: Qualification & Last Seen
+  lastSeenAt            DateTime?     @default(now())
+  qualificationScore    Int?
+  qualificationReason   String?
+  qualificationEvidence String?
+  suggestedProjectScope String?
+  estimatedComplexity   String?
+  aiSummary             String?
+  profileMatch          Json?
+  discoveryEvidence     Json?
+  websiteAnalysisStatus String?
+  qualificationStatus   String?
+
+  audits              AuditReport[]
+  pitches             Pitch[]
+  followUps           LeadFollowUp[]
+  communicationPolicies LeadCommunicationPolicy[]
+  notifications       Notification[]
+  identities          LeadIdentity[]
+  deliveries          NotificationDelivery[]
+  discoverySources    LeadDiscoverySource[]
+  providerVerifications ProviderVerification[]
+  geminiRankingJobs     GeminiRankingJob[]
+
+  @@index([leadStatus])
+  @@index([country])
+  @@index([industry])
+  @@index([businessName])
+  @@index([website])
+  @@index([discoveryDate])
+  @@index([websiteAnalysisStatus])
+  @@index([qualificationStatus])
+}
+
+model ProviderVerification {
+  id          String    @id @default(uuid())
+  provider    String
+  configHash  String
+  startedAt   DateTime  @default(now())
+  finishedAt  DateTime?
+  status      String
+  message     String
+  httpStatus  Int?
+  reason      String?
+  locationKey String?
+  evidence    Json?
+  leadId      String?
+  lead        Lead?     @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  origin      String    @default("acceptance")
+  requestId   String?   @unique
+  rankingJobId String?  @unique
+  rankingJob GeminiRankingJob? @relation(fields: [rankingJobId], references: [id], onDelete: SetNull)
+
+  @@index([provider, configHash, startedAt])
+  @@index([leadId])
+}
+
+model GeminiRankingJob {
+  id          String    @id @default(uuid())
+  leadId      String
+  lead        Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  model       String
+  configHash  String
+  discoveryRunId String?
+  evidenceKey String
+  evidence    Json
+  inspectedAt DateTime
+  status      String    @default("QUEUED")
+  attempts    Int       @default(0)
+  availableAt DateTime  @default(now())
+  leaseUntil  DateTime?
+  leaseToken  String?
+  lastStatus  Int?
+  lastError   String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  verification ProviderVerification?
+
+  @@unique([leadId, model, evidenceKey])
+  @@index([status, availableAt])
+  @@index([status, leaseUntil])
+  @@index([discoveryRunId])
+}
+
+model GeminiRetryCircuit {
+  id             String   @id
+  failures       Int      @default(0)
+  openUntil      DateTime?
+  nextRequestAt  DateTime?
+}
+
+model LeadDiscoverySource {
+  leadId             String
+  lead               Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  providerId         String
+  reference          String
+  sourceUrl          String?
+  firstDiscoveredAt  DateTime
+  lastDiscoveredAt   DateTime
+
+  @@id([leadId, providerId, reference])
+  @@index([providerId, reference])
+}
+
+model DirectoryUsageDay {
+  providerId    String
+  day           DateTime @db.Date
+  requests      Int      @default(0)
+  lastSuccessAt DateTime?
+  lastError     String?
+
+  @@id([providerId, day])
+}
+
+model WebsiteInspectionCache {
+  url        String   @id
+  evidence   Json
+  expiresAt  DateTime
+}
+
+model AuditReport {
+  id                  String   @id @default(uuid())
+  leadId              String?
+  lead                Lead?    @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  websiteUrl          String
+  overallScore        Int      @default(70)
+  mobileFriendly      Boolean  @default(true)
+  speedScore          Int      @default(70)
+  techStackDetected   String[] @default([])
+  missingCapabilities String[] @default([])
+  securityFindings    String[] @default([])
+  uiUxIssues          String[] @default([])
+  pitchHooks          String[] @default([])
+  summary             String
+  rawData             Json?
+  createdAt           DateTime @default(now())
+
+  @@index([leadId])
+}
+
+model Pitch {
+  id                  String       @id @default(uuid())
+  leadId              String?
+  lead                Lead?        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  channel             PitchChannel @default(COLD_EMAIL)
+  messageType         String       @default("COLD_EMAIL")
+  targetService       String
+  targetRegion        String       @default("INDIA")
+  subject             String?
+  body                String
+  personalisedOpening String?
+  observedOpportunity String?
+  relevantService     String?
+  valueProposition    String?
+  callToAction        String?
+  professionalClosing String?
+  followUpSequence    Json?
+  tone                String       @default("professional_friendly")
+  status              PitchStatus  @default(DRAFT)
+  sentAt              DateTime?
+  approvedAt          DateTime?
+  approvalBasis       String?
+  campaignId          String?
+  campaign            OutreachCampaign? @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  proposal            Json?
+  followUps           LeadFollowUp[]
+  metadata            Json?
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  @@index([leadId])
+  @@index([channel])
+  @@index([messageType])
+  @@index([status])
+  @@unique([campaignId, leadId])
+}
+
+model OutreachCampaign {
+  id         String       @id @default(uuid())
+  name       String
+  channel    PitchChannel
+  criteria   Json
+  archivedAt DateTime?
+  revision   Int          @default(0)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  pitches    Pitch[]
+}
+
+model LeadCommunicationPolicy {
+  id         String   @id @default(uuid())
+  leadId     String?
+  lead       Lead?    @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  scope      String
+  contactKey String   @default("")
+  status     String
+  evidence   String
+  revision   Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([leadId, scope, contactKey])
+  @@index([scope, contactKey, status])
+}
+
+model LeadFollowUp {
+  id         String         @id @default(uuid())
+  leadId     String
+  lead       Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  pitchId    String?
+  pitch      Pitch?         @relation(fields: [pitchId], references: [id], onDelete: SetNull)
+  title      String
+  notes      String?
+  dueAt      DateTime
+  status     FollowUpStatus @default(PENDING)
+  remindedAt DateTime?
+  revision   Int            @default(0)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@index([leadId, dueAt])
+  @@index([pitchId])
+  @@index([status, remindedAt, dueAt])
+}
+
+model ServicePackage {
+  id              String   @id @default(uuid())
+  serviceKey      String
+  name            String
+  description     String
+  tier            String   @default("GROWTH")
+  priceInr        Float
+  priceUsd        Float
+  turnaroundWeeks Int      @default(2)
+  deliverables    String[] @default([])
+  popular         Boolean  @default(false)
+  createdAt       DateTime @default(now())
+}
+
+model ActivityLog {
+  id          String   @id @default(uuid())
+  action      String
+  description String
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model DiscoverySearch {
+  id             String   @id @default(uuid())
+  searchQuery    String
+  searchLocation String
+  sourceUsed     String
+  leadsCount     Int      @default(0)
+  errors         String?
+  filters        Json?
+  results        Json?
+  createdAt      DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([sourceUsed])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  leadId    String?
+  lead      Lead?    @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  title     String
+  message   String
+  type      String   @default("LEAD_DISCOVERED")
+  read      Boolean  @default(false)
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([read])
+  @@index([createdAt])
+  @@index([leadId])
+}
+
+model AutoHunterConfig {
+  id                  String    @id @default("default")
+  enabled             Boolean   @default(false)
+  scheduleMode        String    @default("DAILY") // DAILY, WEEKLY, MANUAL
+  scheduledTime       String    @default("09:00")
+  timezone            String    @default("Asia/Kolkata")
+  targetCountries     String[]  @default(["India", "United States", "United Kingdom", "Europe"])
+  targetCities        String[]  @default(["Bengaluru", "Mumbai", "Delhi", "New York", "San Francisco", "London"])
+  targetIndustries    String[]  @default(["Restaurants", "Retail shops", "Healthcare", "Real estate", "Education", "E-commerce", "Travel", "Professional services", "Startups", "Local businesses"])
+  minOpportunityScore Int       @default(60)
+  maxLeadsPerRun      Int       @default(10)
+  preferredProvider   String    @default("openstreetmap")
+  notifyInApp         Boolean   @default(true)
+  notifyEmail         Boolean   @default(false)
+  notifyTelegram      Boolean   @default(false)
+  notificationEmail   String?
+  telegramChatId      String?
+  lastRunAt           DateTime?
+  lastRunStatus       String?
+  nextRunAt           DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model DailyReport {
+  id                    String   @id @default(uuid())
+  reportDate            DateTime @default(now())
+  businessesDiscovered  Int      @default(0)
+  qualifiedLeads        Int      @default(0)
+  highOpportunityLeads  Int      @default(0)
+  leadsByCountry        Json?
+  leadsByIndustry       Json?
+  websitesAnalyzed      Int      @default(0)
+  duplicatesSkipped     Int      @default(0)
+  failedSearches        Int      @default(0)
+  summary               String?
+  createdAt             DateTime @default(now())
+  timezone              String?
+  localDate             String?
+  windowEnd             DateTime?
+
+  @@unique([timezone, localDate])
+  @@index([reportDate])
+  @@index([createdAt])
+}
+
+model BusinessReport {
+  id             String          @id @default(uuid())
+  kind           String
+  timezone       String
+  periodFrom     String
+  periodTo       String
+  origin         String
+  snapshot       Json
+  sourceReportId String?         @unique
+  sourceReport   BusinessReport? @relation("BusinessReportInterpretation", fields: [sourceReportId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  interpretation BusinessReport? @relation("BusinessReportInterpretation")
+  createdAt      DateTime        @default(now())
+
+  @@index([createdAt, id])
+}
+
+model LeadIdentity {
+  key    String @id
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+}
+
+model BusinessProfile {
+  id               String   @id
+  displayName      String
+  professionalRole String
+  portfolioUrl     String
+  services         String[] @default([])
+  technologies     String[] @default([])
+  defaultCurrency  String   @default("INR")
+  revision         Int      @default(1)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model PortfolioProject {
+  id                String    @id @default(uuid())
+  name              String
+  url               String    @unique
+  serviceCategories String[]  @default([])
+  claims            Json
+  shareable         Boolean   @default(false)
+  archivedAt        DateTime?
+  revision          Int       @default(1)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+model IdealClientProfile {
+  id          String                  @id @default(uuid())
+  name        String
+  targeting   Json
+  active      Boolean                 @default(false)
+  activatedAt DateTime?
+  revision    Int                     @default(1)
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  locations   ProfileScheduleCursor[]
+}
+
+model ProfileScheduleCursor {
+  profileId   String
+  locationKey String
+  profile     IdealClientProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  signature   String
+  nextRunAt   DateTime?
+  sequence    Int                @default(0)
+
+  @@id([profileId, locationKey])
+}
+
+model NotificationDelivery {
+  id          String    @id
+  leadId      String
+  lead        Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  channel     String
+  recipient   String
+  status      String    @default("PENDING")
+  attempts    Int       @default(0)
+  availableAt DateTime  @default(now())
+  leaseUntil  DateTime?
+  lastError   String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+
+  @@unique([leadId, channel])
+  @@index([status, availableAt])
+}
+
+model AutoHunterLog {
+  id                    String    @id @default(uuid())
+  status                String    @default("RUNNING") // RUNNING, SUCCESS, FAILED, PARTIAL
+  triggerType           String    @default("SCHEDULED") // SCHEDULED, MANUAL
+  providerUsed          String
+  country               String
+  city                  String?
+  industry              String
+  discoveredCount       Int       @default(0)
+  qualifiedCount        Int       @default(0)
+  duplicatesCount       Int       @default(0)
+  websitesAuditedCount  Int       @default(0)
+  errorDetails          String?
+  startedAt             DateTime  @default(now())
+  completedAt           DateTime?
+  durationMs            Int?
+  createdAt             DateTime  @default(now())
+  scheduledFor          DateTime? @unique
+  profileSnapshot       Json?
+  qualificationMetrics Json?
+  geminiRequestsUsed    Int       @default(0)
+  availableAt           DateTime?
+  leaseUntil            DateTime?
+  leaseToken            String?
+  attempts              Int       @default(0)
+  stopRequestedAt       DateTime?
+
+  @@index([createdAt])
+  @@index([status])
+}

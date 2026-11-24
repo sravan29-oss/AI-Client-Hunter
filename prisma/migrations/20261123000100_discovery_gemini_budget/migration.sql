@@ -1,0 +1,1 @@
+ALTER TABLE "AutoHunterLog" ADD COLUMN "geminiRequestsUsed" INTEGER NOT NULL DEFAULT 0;

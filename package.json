@@ -1,0 +1,37 @@
+{
+  "name": "ai-client-hunter-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-quality AI Client Acquisition Platform for Freelance Tech Services",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "overrides": {
+    "deepmerge-ts": "8.0.2",
+    "effect": "3.22.1"
+  },
+  "scripts": {
+    "dev": "concurrently -k -p \"[{name}]\" -n \"SERVER,CLIENT\" -c \"cyan.bold,green.bold\" \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build": "npm run build --workspace=server && npm run build --workspace=client",
+    "build:server": "npm run build --workspace=server",
+    "build:client": "npm run build --workspace=client",
+    "typecheck": "npm run typecheck --workspace=server && npm run typecheck --workspace=client",
+    "test": "npm run test --workspace=server",
+    "start": "npm run start --workspace=server",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:seed": "tsx prisma/seed.ts",
+    "docker:db:up": "docker compose up -d",
+    "docker:db:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prisma": "^6.3.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

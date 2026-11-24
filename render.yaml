@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: ai-client-hunter-api
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npx prisma generate && npm run build:server
+    preDeployCommand: npx prisma migrate deploy
+    startCommand: npm run start --workspace=server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ai-client-hunter-db
+          property: connectionString
+      - key: API_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false
+      - key: APP_PUBLIC_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "900000"
+      - key: RATE_LIMIT_MAX
+        value: "100"
+      - key: GOOGLE_PLACES_API_KEY
+        sync: false
+      - key: SERPAPI_API_KEY
+        sync: false
+      - key: OSM_OVERPASS_DAILY_REQUEST_LIMIT
+        value: "0"
+      - key: DISCOVERY_EXTERNAL_ALERTS_ENABLED
+        value: "false"
+
+databases:
+  - name: ai-client-hunter-db
+    plan: starter
+    databaseName: ai_client_hunter
+    user: ai_client_hunter_user

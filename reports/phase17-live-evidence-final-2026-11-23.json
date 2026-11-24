@@ -1,0 +1,182 @@
+{
+  "timestamp": "2026-11-23T13:35:00.000Z",
+  "environment": {
+    "nodeEnv": "development",
+    "port": 5000,
+    "geminiModel": "gemini-2.5-flash"
+  },
+  "providers": {
+    "gemini": {
+      "httpStatus": 200,
+      "status": "verified",
+      "passed": true,
+      "model": "gemini-2.5-flash",
+      "verificationId": "cf3f77f5-b8b8-4a96-956a-674dbc443fe6",
+      "startedAt": "2026-11-23T13:31:40.541Z",
+      "finishedAt": "2026-11-23T13:31:44.115Z",
+      "message": "Gemini ranked the measured findings saved with this CRM lead.",
+      "leadId": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+      "leadName": "RL Tours and Travels | Travel agency in Hyderabad",
+      "evidence": {
+        "model": "gemini-2.5-flash",
+        "ranked": [
+          "2 navigation anchors have empty or placeholder destinations in the downloaded markup.",
+          "8 image elements on the inspected page have missing or empty alternative text."
+        ],
+        "inspectedAt": "2026-11-23T06:39:11.973Z"
+      }
+    },
+    "googlePlaces": {
+      "httpStatus": 200,
+      "status": "verified",
+      "passed": true,
+      "latencyMs": 1335,
+      "verifiedWithKey": "[redacted credential reference]",
+      "liveSampleFound": [
+        "Cloudz Tours and Travels (Hyderabad)",
+        "RL Tours and Travels | Travel agency in Hyderabad",
+        "Magnolia Bakery (Bengaluru)",
+        "Drury Covent Garden (London)"
+      ]
+    },
+    "serpApi": {
+      "httpStatus": 200,
+      "status": "verified",
+      "passed": true,
+      "latencyMs": 546,
+      "cities": {
+        "Hyderabad": {
+          "totalFound": 3,
+          "returnedCount": 3,
+          "filteredOut": 0,
+          "leads": [
+            {
+              "name": "RL Tours and Travels | Travel agency in Hyderabad",
+              "city": "Hyderabad",
+              "website": "https://rltours.in/",
+              "source": "SerpApi Local (Hyderabad)",
+              "isDuplicate": true
+            },
+            {
+              "name": "Columbus Vacations Pvt ltd",
+              "city": "Hyderabad",
+              "website": "http://www.columbusvacations.in/",
+              "source": "SerpApi Local (Hyderabad)",
+              "isDuplicate": false
+            },
+            {
+              "name": "Go Global Vacations | Travel Agency in Hyderabad",
+              "city": "Hyderabad",
+              "website": "http://goglobalvacations.in/",
+              "source": "SerpApi Local (Hyderabad)",
+              "isDuplicate": false
+            }
+          ]
+        },
+        "Karimnagar": {
+          "totalFound": 3,
+          "returnedCount": 3,
+          "filteredOut": 0,
+          "leads": [
+            {
+              "name": "Karimnagar Tours & Travels",
+              "city": "Karimnagar",
+              "website": "http://www.karimnagartourstravels.com/",
+              "source": "SerpApi Local (Karimnagar)",
+              "isDuplicate": false
+            },
+            {
+              "name": "GANESHWARA CAR TRAVELS {SSS}",
+              "city": "Karimnagar",
+              "website": "http://www.facebook.com/srinivas3sss/",
+              "source": "SerpApi Local (Karimnagar)",
+              "isDuplicate": false
+            },
+            {
+              "name": "Southern Travels Pvt. Ltd. - Karimnagar, Telangana",
+              "city": "Karimnagar",
+              "website": "http://southerntravelsindia.com/",
+              "source": "SerpApi Local (Karimnagar)",
+              "isDuplicate": false
+            }
+          ]
+        },
+        "Warangal": {
+          "totalFound": 3,
+          "returnedCount": 3,
+          "filteredOut": 0,
+          "leads": [
+            {
+              "name": "Telangana Travel Hub",
+              "city": "Warangal",
+              "website": "https://telanganatravelhub.in/",
+              "source": "SerpApi Local (Warangal)",
+              "isDuplicate": false
+            },
+            {
+              "name": "FARHAN TOURS AND TRAVELS",
+              "city": "Warangal",
+              "website": "http://www.farhantravels.in/",
+              "source": "SerpApi Local (Warangal)",
+              "isDuplicate": false
+            },
+            {
+              "name": "New Golden Travels",
+              "city": "Warangal",
+              "website": "http://newgoldentravels.online/",
+              "source": "SerpApi Local (Warangal)",
+              "isDuplicate": false
+            }
+          ]
+        }
+      }
+    },
+    "overpass": {
+      "status": 502,
+      "data": "# 502 Gateway Timeout\n\nThis Overpass API server is currently at capacity. All query workers are busy\nand the request queue is full.\n\n## What to do\n\nRetry your request using exponential backoff: wait a short interval, then retry.\nIf the request fails again, double the wait time and retry again.\n\n## For heavy or automated use\n\nThis public endpoint is intended for browser-based and human-operated tools.\nFor automated or high-volume use, run a local Overpass API instance:\n\nhttps://github.com/b1tw153/Overpass-API/blob/main/README.md\n"
+    }
+  },
+  "targeting": {
+    "industry": "Travel agencies",
+    "cities": ["Hyderabad", "Karimnagar", "Warangal"]
+  },
+  "crm": {
+    "leadAnalysis": {
+      "leadId": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+      "businessName": "RL Tours and Travels | Travel agency in Hyderabad",
+      "website": "https://rltours.in/",
+      "generatedBy": "gemini",
+      "model": "gemini-2.5-flash",
+      "aiSummary": "Live Gemini Analysis (2026-11-23T13:31:51.496Z): Inspected an HTTPS page that returned HTTP 200.. Identified 2 technical improvement opportunities.",
+      "websiteCondition": "Inspected an HTTPS page that returned HTTP 200.",
+      "findingsCount": 2,
+      "findings": [
+        {
+          "id": "navigation",
+          "opportunity": "Check navigation placeholders",
+          "evidence": "2 navigation anchors have empty or placeholder destinations in the downloaded markup."
+        },
+        {
+          "id": "images",
+          "opportunity": "Review image accessibility",
+          "evidence": "8 image elements on the inspected page have missing or empty alternative text."
+        }
+      ],
+      "confidence": 80
+    },
+    "counts": {
+      "leadsCount": 18,
+      "pitchesCount": 15,
+      "auditsCount": 12,
+      "verifsCount": 5
+    }
+  },
+  "security": {
+    "googleKeyConfigured": true,
+    "googleKeyRedacted": "[redacted credential reference]",
+    "geminiKeyConfigured": true,
+    "geminiKeyRedacted": "[redacted credential reference]",
+    "secretsFoundInClientBuild": 0,
+    "externalAlertsEnabled": false
+  }
+}

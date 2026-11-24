@@ -1,0 +1,381 @@
+{
+  "scope": "Local development backend and configured PostgreSQL ai_client_hunter",
+  "dateIST": "2026-11-23",
+  "acceptance": "WITHHELD",
+  "liveRequests": [
+    {
+      "at": "2026-11-23T06:38:59.553Z",
+      "method": "POST",
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "status": 403,
+      "contentType": "application/json",
+      "keyHeaderPresent": true,
+      "fieldMask": "places.id,places.displayName,places.formattedAddress,places.websiteUri,places.internationalPhoneNumber,places.nationalPhoneNumber,places.types,places.addressComponents,places.businessStatus,places.googleMapsUri,nextPageToken",
+      "requestBody": {
+        "textQuery": "Travel agencies in Hyderabad, India",
+        "pageSize": 1
+      },
+      "errorBody": {
+        "error": {
+          "code": 403,
+          "message": "The caller does not have permission",
+          "status": "PERMISSION_DENIED"
+        }
+      }
+    },
+    {
+      "at": "2026-11-23T06:39:05.975Z",
+      "method": "GET",
+      "url": "https://serpapi.com/search.json",
+      "status": 200,
+      "query": "Travel agencies in Hyderabad, India",
+      "providerStatus": "Success",
+      "returned": 20
+    },
+    {
+      "at": "2026-11-23T06:39:07.099Z",
+      "method": "GET",
+      "url": "https://serpapi.com/search.json",
+      "status": 200,
+      "query": "Travel agencies in Karimnagar, India",
+      "providerStatus": "Success",
+      "returned": 20
+    },
+    {
+      "at": "2026-11-23T06:39:08.157Z",
+      "method": "GET",
+      "url": "https://serpapi.com/search.json",
+      "status": 200,
+      "query": "Travel agencies in Warangal, India",
+      "providerStatus": "Success",
+      "returned": 20
+    }
+  ],
+  "additionalDiagnostics": {
+    "minimalPlaces": {
+      "at": "2026-11-23T06:42:05.439Z",
+      "mask": "places.id",
+      "status": 403,
+      "body": {
+        "error": {
+          "code": 403,
+          "message": "The caller does not have permission",
+          "status": "PERMISSION_DENIED"
+        }
+      }
+    },
+    "geminiMetadata": {
+      "at": "2026-11-23T06:42:05.664Z",
+      "method": "GET",
+      "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash",
+      "authenticated": false,
+      "status": 403,
+      "reason": "PERMISSION_DENIED"
+    }
+  },
+  "gemini": {
+    "configured": false,
+    "model": "gemini-2.5-flash"
+  },
+  "overpass": {
+    "at": "2026-11-23T06:38:59.562Z",
+    "configured": false,
+    "state": "missing_configuration",
+    "message": "Set OSM_OVERPASS_URL to an authorized Overpass endpoint."
+  },
+  "profileUpdate": {
+    "at": "2026-11-23T06:37:21.609Z",
+    "oldRevision": 2,
+    "savedRevision": 3,
+    "active": true,
+    "put": 200,
+    "get": 200,
+    "verifiedInPostgres": true,
+    "locations": [
+      {
+        "country": "India",
+        "city": "Hyderabad",
+        "radius": null,
+        "schedule": {
+          "mode": "DAILY",
+          "time": "09:00",
+          "timezone": "Asia/Calcutta"
+        },
+        "countryCode": "IN"
+      },
+      {
+        "country": "India",
+        "city": "Karimnagar",
+        "radius": null,
+        "schedule": {
+          "mode": "DAILY",
+          "time": "09:00",
+          "timezone": "Asia/Calcutta"
+        },
+        "countryCode": "IN"
+      },
+      {
+        "country": "India",
+        "city": "Warangal",
+        "radius": null,
+        "schedule": {
+          "mode": "DAILY",
+          "time": "09:00",
+          "timezone": "Asia/Calcutta"
+        },
+        "countryCode": "IN"
+      }
+    ]
+  },
+  "cityChecks": [
+    {
+      "city": "Hyderabad",
+      "timestamp": "2026-11-23T06:39:05.977Z",
+      "industry": "Travel agencies",
+      "returned": 5,
+      "accepted": 5,
+      "matchesOfSameResponseForOtherCities": {
+        "Karimnagar": 0,
+        "Warangal": 0
+      },
+      "rejected": []
+    },
+    {
+      "city": "Karimnagar",
+      "timestamp": "2026-11-23T06:39:07.104Z",
+      "industry": "Travel agencies",
+      "returned": 5,
+      "accepted": 4,
+      "matchesOfSameResponseForOtherCities": {
+        "Hyderabad": 0,
+        "Warangal": 0
+      },
+      "rejected": [
+        {
+          "listingName": "Smart city tours & travels",
+          "address": "Srinagar Colony, Kashmirgadda, Karimnagar, Telangana 505001, India",
+          "types": [
+            "Car rental agency",
+            "Car rental agency",
+            "Car leasing service"
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Warangal",
+      "timestamp": "2026-11-23T06:39:08.160Z",
+      "industry": "Travel agencies",
+      "returned": 5,
+      "accepted": 3,
+      "matchesOfSameResponseForOtherCities": {
+        "Hyderabad": 0,
+        "Karimnagar": 0
+      },
+      "rejected": [
+        {
+          "listingName": "SR TOURS AND TRAVELS WARANGAL",
+          "address": "SHOP NO:17, Vaddiraj Green Square Plaza, Opp:, Public Garden Rd, Opposite Public Gardens, Kishanpura, Hanamkonda, Telangana 506001, India",
+          "types": [
+            "Travel agency",
+            "Travel agency"
+          ]
+        },
+        {
+          "listingName": "Warangal Travels & CABS",
+          "address": "1/A 16-3-770 Under bridge, railway, Station Rd, Warangal, Telangana 506002, India",
+          "types": [
+            "Car rental agency",
+            "Car rental agency",
+            "Taxi service"
+          ]
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "at": "2026-11-23T06:39:11.986Z",
+    "generatedBy": "evidence_fallback",
+    "modelRequests": 0,
+    "business": "RL Tours and Travels | Travel agency in Hyderabad",
+    "city": "Hyderabad",
+    "industry": "Travel agencies",
+    "listedAddress": "8th Floor, Vasavi Mpm Grand, Plot No.917, Ameerpet, Hyderabad, Telangana 500073, India",
+    "reference": "ChIJZ7XfE4yXyzsRjXNZRs_os2g",
+    "website": "https://rltours.in/",
+    "status": 200,
+    "inspectedAt": "2026-11-23T06:39:11.973Z",
+    "cached": false,
+    "opportunities": [
+      {
+        "id": "images",
+        "evidence": "8 image elements on the inspected page have missing or empty alternative text."
+      },
+      {
+        "id": "navigation",
+        "evidence": "2 navigation anchors have empty or placeholder destinations in the downloaded markup."
+      }
+    ],
+    "budgetRange": null,
+    "score": 73,
+    "threshold": 60
+  },
+  "crm": {
+    "id": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+    "created": true,
+    "at": "2026-11-23T06:41:13.092Z",
+    "apiStatus": 200,
+    "crm": "http://127.0.0.1:5173/?lead=3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+    "source": "SerpApi Local (Hyderabad)",
+    "reference": "ChIJZ7XfE4yXyzsRjXNZRs_os2g",
+    "discoveredAt": "2026-11-23T06:39:05.977Z",
+    "target": {
+      "city": "Hyderabad",
+      "country": "India"
+    },
+    "score": 73,
+    "generatedBy": "evidence_fallback",
+    "evidence": {
+      "url": "https://rltours.in/",
+      "emptyNavLinksCount": 2,
+      "imagesMissingAltCount": 8
+    }
+  },
+  "browser": {
+    "at": "2026-11-23T06:42:07.691Z",
+    "url": "http://127.0.0.1:5173/?lead=3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+    "visible": {
+      "RL Tours and Travels": true,
+      "Measured evidence": true,
+      "8 image elements": true,
+      "2 navigation anchors": true,
+      "SerpApi Local (Hyderabad)": true
+    }
+  },
+  "dataIntegrity": {
+    "at": "2026-11-23T06:42:38.410Z",
+    "existingLeadsUnchanged": true,
+    "originalLeadCount": 17,
+    "unchangedTables": {
+      "pitch": true,
+      "auditReport": true,
+      "portfolioProject": true,
+      "businessProfile": true,
+      "autoHunterLog": true,
+      "notificationDelivery": true,
+      "notification": true,
+      "discoverySearch": true
+    },
+    "allSourceLabels": true,
+    "countsBefore": {
+      "lead": 17,
+      "pitch": 15,
+      "auditReport": 12,
+      "portfolioProject": 3,
+      "businessProfile": 1,
+      "idealClientProfile": 1,
+      "autoHunterLog": 2,
+      "notificationDelivery": 0,
+      "notification": 10,
+      "activityLog": 63,
+      "leadDiscoverySource": 0,
+      "discoverySearch": 15
+    },
+    "countsAfter": {
+      "lead": 18,
+      "pitch": 15,
+      "auditReport": 12,
+      "portfolioProject": 3,
+      "businessProfile": 1,
+      "idealClientProfile": 1,
+      "autoHunterLog": 2,
+      "notificationDelivery": 0,
+      "notification": 10,
+      "activityLog": 65,
+      "leadDiscoverySource": 1,
+      "discoverySearch": 15
+    },
+    "crm": {
+      "health": {
+        "database": {
+          "status": "connected",
+          "engine": "PostgreSQL with Prisma ORM",
+          "actionNeeded": null
+        },
+        "geminiAi": {
+          "configured": false,
+          "model": "gemini-2.5-flash",
+          "actionNeeded": "Set GEMINI_API_KEY in .env to enable live Gemini LLM calls"
+        },
+        "notifications": {
+          "emailConfigured": false,
+          "telegramConfigured": false
+        },
+        "scheduler": {
+          "enabled": false,
+          "isRunning": false,
+          "jobStatus": null
+        }
+      },
+      "crmStatus": 200,
+      "crmCount": 18,
+      "detailMatches": 18
+    },
+    "pune": {
+      "leads": 0,
+      "savedSearches": 0,
+      "jobs": 0,
+      "activityLogs": 0
+    },
+    "sentMarksDuringVerification": 0,
+    "legacyCities": {
+      "Bengaluru": 16,
+      "Unknown": 1
+    },
+    "legacySourceReferenceRows": 0,
+    "schedulerEnabled": false,
+    "deliverySettings": {
+      "master": false,
+      "email": false,
+      "telegram": false
+    }
+  },
+  "secretScan": {
+    "at": "2026-11-23T06:42:37.698Z",
+    "scanned": {
+      "frontend": 36,
+      "workspaceLogs": 15,
+      "databaseDiagnosticFields": 84
+    },
+    "credentialTypes": [
+      "GOOGLE_PLACES_API_KEY",
+      "SERPAPI_API_KEY"
+    ],
+    "findings": []
+  },
+  "historicalManualSentEvents": [
+    "2026-11-19T06:45:40.896Z",
+    "2026-11-19T07:27:15.811Z",
+    "2026-11-19T07:29:33.621Z",
+    "2026-11-19T07:31:10.638Z",
+    "2026-11-19T07:31:43.142Z",
+    "2026-11-19T07:35:58.620Z",
+    "2026-11-19T07:40:33.596Z"
+  ],
+  "backup": {
+    "name": "before-phase17-2026-11-22T18-07-25.455Z.dump",
+    "bytes": 70401,
+    "sha256": "260c849f01163427826d44ac0f21851f6ac1cf1ee77a625ace44c4410c5af36e",
+    "pgRestoreListExit": 0
+  },
+  "controlledTests": {
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "suites": [
+      "geminiHardening.test.ts",
+      "discoveryQualification.test.ts",
+      "idealClientProfiles.test.ts"
+    ]
+  }
+}

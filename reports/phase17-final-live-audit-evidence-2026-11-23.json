@@ -1,0 +1,401 @@
+{
+  "startedAt": "2026-11-23T15:50:34.905Z",
+  "liveChecks": {
+    "gemini": {
+      "state": "rate_limited",
+      "passed": false,
+      "latest": {
+        "id": "1453e253-3e3b-4c41-9e25-06b455ad7fe9",
+        "startedAt": "2026-11-23T15:50:35.415Z",
+        "finishedAt": "2026-11-23T15:50:35.927Z",
+        "status": "rate_limited",
+        "message": "HTTP 429. Google reports that a quota or resource limit was reached.",
+        "reason": "RESOURCE_EXHAUSTED",
+        "httpStatus": 429,
+        "evidence": null,
+        "locationKey": null,
+        "leadId": null
+      }
+    },
+    "google_places": {
+      "state": "verified",
+      "passed": true,
+      "latest": {
+        "id": "fd128d63-0047-4086-85aa-731100983fd6",
+        "startedAt": "2026-11-23T15:50:35.959Z",
+        "finishedAt": "2026-11-23T15:50:36.453Z",
+        "status": "verified",
+        "message": "Places API (New) returned a named listing.",
+        "reason": null,
+        "httpStatus": 200,
+        "evidence": {
+          "city": "Hyderabad",
+          "country": "India",
+          "placeId": "ChIJC0YLTmGXyzsRlhNidNMcDh8"
+        },
+        "locationKey": null,
+        "leadId": null
+      }
+    },
+    "overpass": {
+      "state": "failed",
+      "passed": false,
+      "latest": {
+        "id": "bbda2c1a-433b-4d50-81ee-ac4c22565ed1",
+        "startedAt": "2026-11-23T15:50:36.478Z",
+        "finishedAt": "2026-11-23T15:50:37.140Z",
+        "status": "failed",
+        "message": "Search provider returned an upstream error.",
+        "reason": "upstream_error",
+        "httpStatus": 502,
+        "evidence": null,
+        "locationKey": "IN:hyderabad",
+        "leadId": null
+      }
+    }
+  },
+  "wire": [
+    {
+      "at": "2026-11-23T15:50:35.923Z",
+      "host": "generativelanguage.googleapis.com",
+      "path": "/v1beta/models/gemini-2.5-flash:generateContent",
+      "http": 429,
+      "code": "ERR_BAD_REQUEST"
+    },
+    {
+      "at": "2026-11-23T15:50:36.449Z",
+      "host": "places.googleapis.com",
+      "path": "/v1/places:searchText",
+      "http": 200,
+      "code": null,
+      "mask": "places.id,places.displayName,places.formattedAddress,places.websiteUri,places.internationalPhoneNumber,places.nationalPhoneNumber,places.types,places.addressComponents,places.businessStatus,places.googleMapsUri",
+      "placesReturned": 1
+    },
+    {
+      "at": "2026-11-23T15:50:37.133Z",
+      "host": "overpass-api.de",
+      "path": "/api/interpreter",
+      "http": 502,
+      "code": "ERR_BAD_RESPONSE"
+    },
+    {
+      "at": "2026-11-23T15:50:43.478Z",
+      "host": "serpapi.com",
+      "path": "/search.json",
+      "http": 200,
+      "code": null,
+      "query": "Travel agencies in Hyderabad, India",
+      "searchStatus": "Success",
+      "rawListings": 20
+    },
+    {
+      "at": "2026-11-23T15:50:45.050Z",
+      "host": "serpapi.com",
+      "path": "/search.json",
+      "http": 200,
+      "code": null,
+      "query": "Travel agencies in Karimnagar, India",
+      "searchStatus": "Success",
+      "rawListings": 20
+    },
+    {
+      "at": "2026-11-23T15:50:46.285Z",
+      "host": "serpapi.com",
+      "path": "/search.json",
+      "http": 200,
+      "code": null,
+      "query": "Travel agencies in Warangal, India",
+      "searchStatus": "Success",
+      "rawListings": 20
+    }
+  ],
+  "cities": [
+    {
+      "city": "Hyderabad",
+      "country": "India",
+      "returned": 5,
+      "accepted": 5,
+      "listings": [
+        {
+          "name": "Cloudz Tours and Travels",
+          "reference": "ChIJBwsHJziXyzsR8PS3-5puufI",
+          "address": "2nd Floor, Unit 204, Reliance Classic Enclave, Banjara Hills Rd Number 1, opp. Axis Bank and Cream Stone, Avenue 4, Banjara Hills, Hyderabad, Telangana 500034, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "BuildMyTrip – International & Domestic Tour Packages | Travel Company",
+          "reference": "ChIJq-mu22-RyzsRKr_tEjsJ9Vs",
+          "address": "S-1, SAI SADAN APARTMENTS METRO PILLAR C1492, MADHURANAGAR, Yousufguda, Hyderabad, Telangana 500038, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Riya – The Travel Expert | Hyderabad",
+          "reference": "ChIJAQAAQESVyzsRHSDormD-sQ0",
+          "address": "Ground Floor, Naspur House, 3-6-437, Himayatnagar, Hyderabad, Telangana 500029, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Columbus Vacations Pvt ltd",
+          "reference": "ChIJgT5alN-ZyzsROPz43IyewP0",
+          "address": "H.No:3-6-504, 2nd Floor, Street # 6, opposite lane to Bank of Baroda, Himayatnagar, Hyderabad, Telangana 500029, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "RL Tours and Travels | Travel agency in Hyderabad",
+          "reference": "ChIJZ7XfE4yXyzsRjXNZRs_os2g",
+          "address": "8th Floor, Vasavi Mpm Grand, Plot No.917, Ameerpet, Hyderabad, Telangana 500073, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": "3dc08561-b50e-4a81-a53e-8be0d28db9b7"
+        }
+      ]
+    },
+    {
+      "city": "Karimnagar",
+      "country": "India",
+      "returned": 5,
+      "accepted": 4,
+      "listings": [
+        {
+          "name": "GANESHWARA CAR TRAVELS {SSS}",
+          "reference": "ChIJVy0nw0HZzDsRBgNiUl7jk1w",
+          "address": "8-7-131 near GOVT High school, Kothirampur, Karimnagar, Telangana 505001, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Smart city tours & travels",
+          "reference": "ChIJtewVTEPZzDsRnKSfXl10p9M",
+          "address": "Srinagar Colony, Kashmirgadda, Karimnagar, Telangana 505001, India",
+          "accepted": false,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Karimnagar Tours & Travels",
+          "reference": "ChIJB8Fn9xvZzDsRvdcl7chEvtk",
+          "address": "Complex, Jafri Masjid Ln, opp. Geetha Bhavan, Padmanagar, Mukarampura, Karimnagar, Telangana 505001, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Southern Travels Pvt. Ltd. - Karimnagar, Telangana",
+          "reference": "ChIJ97R8VF7fzDsRaRhfN5hcwuM",
+          "address": "Building, Ground Floor, Medwin General Hospital, Vemulawada Rd, Mankamma Thota, Karimnagar, Telangana 505001, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Travelx Tours and Travels",
+          "reference": "ChIJ1WjzsCPZzDsR8CS4lTk2BqM",
+          "address": "Green Square Plaza, Ground Floor, Shop No -3, Mukarampura Circle, Busstand Rd, Mukarampura, Karimnagar, Telangana 505001, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        }
+      ]
+    },
+    {
+      "city": "Warangal",
+      "country": "India",
+      "returned": 5,
+      "accepted": 4,
+      "listings": [
+        {
+          "name": "Telangana Travel Hub",
+          "reference": "ChIJoW4DNwlFMzoRk73GYhxwDIE",
+          "address": "11-19-150, Kashibugga, LB Nagar, Warangal, Telangana 506002, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "New Golden Travels",
+          "reference": "ChIJw02if6lFMzoR3syrUr7hkY8",
+          "address": "Mig- 406, Keerthi Nagar Colony, Keerthi Colony, Warangal, Telangana 506013, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "SR TOURS AND TRAVELS WARANGAL",
+          "reference": "ChIJKaqxQzhFMzoRbhiOkzacoqE",
+          "address": "SHOP NO:17, Vaddiraj Green Square Plaza, Opp:, Public Garden Rd, Opposite Public Gardens, Kishanpura, Hanamkonda, Telangana 506001, India",
+          "accepted": false,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "V.K Sarveshwara Travels",
+          "reference": "ChIJdWqM6QNFMzoRtskGJjW4UL4",
+          "address": "11-18-617/2, 4, Vivekananda Colony Rd, Warangal, Telangana 506002, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        },
+        {
+          "name": "Indian Tours and Travels",
+          "reference": "ChIJGSy15_RFMzoR6_5CazBC-1o",
+          "address": "near AM PM Hotel, LB Nagar, Warangal, Telangana 506002, India",
+          "accepted": true,
+          "matchedOtherCities": [],
+          "existingLeadId": null
+        }
+      ]
+    }
+  ],
+  "controls": {
+    "externalAlerts": false,
+    "scheduler": false,
+    "email": false,
+    "telegram": false
+  },
+  "lead": {
+    "id": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+    "name": "RL Tours and Travels | Travel agency in Hyderabad",
+    "city": "Hyderabad",
+    "country": "India",
+    "existingMethod": "evidence_fallback",
+    "sourceRefs": [
+      {
+        "provider": "serpapi",
+        "reference": "ChIJZ7XfE4yXyzsRjXNZRs_os2g"
+      }
+    ]
+  },
+  "integrationBefore": [
+    {
+      "id": "gemini",
+      "configured": true,
+      "enabled": true,
+      "state": "verified",
+      "issue": null
+    },
+    {
+      "id": "google_places",
+      "configured": true,
+      "enabled": true,
+      "state": "untested",
+      "issue": null
+    },
+    {
+      "id": "serpapi",
+      "configured": true,
+      "enabled": true,
+      "state": "verified",
+      "issue": null
+    },
+    {
+      "id": "overpass",
+      "configured": true,
+      "enabled": true,
+      "state": "failed",
+      "issue": null
+    }
+  ],
+  "persistence": {
+    "verification": {
+      "id": "1453e253-3e3b-4c41-9e25-06b455ad7fe9",
+      "leadId": null,
+      "status": "rate_limited",
+      "evidence": null,
+      "finishedAt": "2026-11-23T15:50:35.927Z"
+    },
+    "crmApi": 200,
+    "crmShowsRanking": false,
+    "crmFallbackMethod": "evidence_fallback",
+    "leadCount": 18,
+    "leadsIdentical": true,
+    "sourceCount": 1,
+    "sourcesIdentical": true,
+    "deliveriesBefore": 0,
+    "deliveriesAfter": 0
+  },
+  "dashboard": {
+    "acceptance": "withheld",
+    "providers": [
+      {
+        "id": "gemini",
+        "state": "rate_limited",
+        "passed": false
+      },
+      {
+        "id": "google_places",
+        "state": "verified",
+        "passed": true
+      },
+      {
+        "id": "serpapi",
+        "state": "verified",
+        "passed": true
+      },
+      {
+        "id": "overpass",
+        "state": "failed",
+        "passed": false
+      }
+    ]
+  },
+  "finishedAt": "2026-11-23T15:50:46.366Z",
+  "security": {
+    "at": "2026-11-23T15:51:33.654Z",
+    "scanned": {
+      "assets": 36,
+      "logs": 19,
+      "database": 106,
+      "reports": 5
+    },
+    "findings": [],
+    "api": [
+      {
+        "route": "/api/provider-readiness",
+        "http": 200,
+        "found": false
+      },
+      {
+        "route": "/api/health",
+        "http": 200,
+        "found": false
+      },
+      {
+        "route": "/api/leads/3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+        "http": 200,
+        "found": false
+      }
+    ],
+    "googleRotation": "unverified; current key matched previously exposed report value before redaction"
+  },
+  "tests": {
+    "backend": {
+      "passed": 109,
+      "failed": 0,
+      "skipped": 0,
+      "isolated": true
+    },
+    "frontend": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "initialBackend": {
+      "passed": 107,
+      "failed": 2,
+      "skipped": 0,
+      "liveGeminiConfigInherited": true
+    },
+    "typecheck": "passed",
+    "backendProductionBuild": "passed",
+    "frontendProductionBuild": "passed"
+  }
+}

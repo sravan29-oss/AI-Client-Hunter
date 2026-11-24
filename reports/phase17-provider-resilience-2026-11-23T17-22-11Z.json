@@ -1,0 +1,164 @@
+{
+  "startedAt": "2026-11-23T17:22:11.209Z",
+  "acceptance": "withheld",
+  "google": {
+    "revocationConfirmed": false,
+    "rotationOwnerAccess": "No Google Cloud revocation evidence supplied",
+    "apiHttp": 200,
+    "check": {
+      "id": "190756a3-14eb-477f-9f84-12ecdf8b3c0e",
+      "http": 200,
+      "status": "verified",
+      "at": "2026-11-23T17:22:12.390Z",
+      "message": "Places API (New) returned a named listing.",
+      "reason": null,
+      "object": null,
+      "placeId": "ChIJC0YLTmGXyzsRlhNidNMcDh8",
+      "city": "Hyderabad"
+    },
+    "usedReplacement": true
+  },
+  "overpass": [
+    {
+      "city": "Hyderabad",
+      "locationKey": "IN:hyderabad",
+      "apiHttp": 200,
+      "at": "2026-11-23T17:22:12.997Z",
+      "check": {
+        "id": "1cfece92-4f72-4fae-906e-3aa7da58ab6d",
+        "http": 502,
+        "status": "failed",
+        "at": "2026-11-23T17:22:12.964Z",
+        "message": "Search provider returned an upstream error.",
+        "reason": "upstream_error",
+        "object": null,
+        "placeId": null,
+        "city": null
+      },
+      "verifiedObject": false
+    },
+    {
+      "city": "Karimnagar",
+      "locationKey": "IN:karimnagar",
+      "apiHttp": 200,
+      "at": "2026-11-23T17:22:44.716Z",
+      "check": {
+        "id": "648e2f19-9fa7-4106-9005-0c8ece95eeff",
+        "http": 502,
+        "status": "failed",
+        "at": "2026-11-23T17:22:44.676Z",
+        "message": "Search provider returned an upstream error.",
+        "reason": "upstream_error",
+        "object": null,
+        "placeId": null,
+        "city": null
+      },
+      "verifiedObject": false
+    },
+    {
+      "city": "Warangal",
+      "locationKey": "IN:warangal",
+      "apiHttp": 200,
+      "at": "2026-11-23T17:23:23.789Z",
+      "check": {
+        "id": "08d6c80a-aea8-4171-8fdd-6faec3f029dd",
+        "http": null,
+        "status": "failed",
+        "at": "2026-11-23T17:23:23.770Z",
+        "message": "Search provider timed out.",
+        "reason": "timeout",
+        "object": null,
+        "placeId": null,
+        "city": null
+      },
+      "verifiedObject": false
+    }
+  ],
+  "gemini": {
+    "liveRequests": 0,
+    "model": "gemini-3.8-flash",
+    "latestAcceptance": {
+      "id": "0a809dc1-89a2-4ca6-af2b-81cb4418fd45",
+      "http": 503,
+      "status": "failed",
+      "at": "2026-11-23T17:09:58.572Z",
+      "message": "HTTP 503. Google returned an error without a specific diagnostic.",
+      "reason": null,
+      "object": null,
+      "placeId": null,
+      "city": null
+    }
+  },
+  "backup": "before-provider-resilience-2026-11-23T17-12-34.683Z.dump",
+  "overpassConfigured": true,
+  "overpassInterpreterHost": "overpass-api.de",
+  "integrity": {
+    "lead": {
+      "before": 18,
+      "after": 18,
+      "unchanged": true
+    },
+    "pitch": {
+      "before": 16,
+      "after": 16,
+      "unchanged": true
+    },
+    "auditReport": {
+      "before": 12,
+      "after": 12,
+      "unchanged": true
+    },
+    "providerVerification": {
+      "before": 15,
+      "after": 15,
+      "unchanged": true
+    },
+    "leadDiscoverySource": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    },
+    "notificationDelivery": {
+      "before": 0,
+      "after": 0,
+      "unchanged": true
+    },
+    "autoHunterConfig": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    }
+  },
+  "realAiQueueRows": 0,
+  "externalAlertsEnabled": false,
+  "finishedAt": "2026-11-23T17:23:23.820Z",
+  "regressions": {
+    "backend": {
+      "passed": 114,
+      "failed": 0,
+      "skipped": 0,
+      "isolatedPostgreSQL": true
+    },
+    "frontend": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "backendTypecheck": "passed",
+    "frontendTypecheck": "passed",
+    "backendBuild": "passed",
+    "frontendBuild": "passed",
+    "migrationDiff": "no differences",
+    "liveGeminiRequestsInTests": 0
+  },
+  "secretScan": {
+    "at": "2026-11-23T17:23:26.800Z",
+    "scanned": {
+      "assets": 36,
+      "logs": 25,
+      "database": 117,
+      "reports": 20
+    },
+    "findings": []
+  }
+}

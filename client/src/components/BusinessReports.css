@@ -1,0 +1,62 @@
+.report-print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 13mm;
+  }
+
+  body:has(.business-report-print) #root :not(.business-report-print, .business-report-print *):not(:has(.business-report-print)) {
+    display: none !important;
+  }
+
+  body:has(.business-report-print),
+  body:has(.business-report-print) #root,
+  #root :has(.business-report-print) {
+    display: block !important;
+    color: #111827 !important;
+    background: white !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: visible !important;
+  }
+
+  .business-report-print,
+  .business-report-print * {
+    color: #111827 !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  .business-report-print .report-item,
+  .business-report-print tr {
+    break-inside: avoid;
+  }
+
+  .business-report-print h2,
+  .business-report-print h3 {
+    break-after: avoid;
+  }
+
+  .business-report-print .report-table {
+    overflow: visible;
+  }
+
+  .business-report-print table {
+    min-width: 0;
+  }
+
+  .business-report-print .report-screen-only {
+    display: none !important;
+  }
+
+  .business-report-print .report-print-only {
+    display: block;
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "startedAt": "2026-11-23T17:03:17.734Z",
+  "projectReportedByOwner": "AI SK",
+  "model": "gemini-3.8-flash",
+  "ownerReportedQuota": {
+    "rpm": 5,
+    "tpm": 250000,
+    "rpd": 20
+  },
+  "leadId": "3dc08561-b50e-4a81-a53e-8be0d28db9b7",
+  "generationRequests": 1,
+  "provider": "Gemini Developer API",
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+  "result": "FAILED",
+  "modelCompatibility": {
+    "catalog": "reports/phase17-gemini-model-availability-2026-11-23T16-56Z.json",
+    "advertisedMethods": [
+      "generateContent",
+      "countTokens",
+      "createCachedContent",
+      "batchGenerateContent"
+    ],
+    "structuredOutputDocumentation": "https://aistudio.google.com/docs/models/gemini-3.8-flash",
+    "requestedMimeType": "application/json",
+    "schema": "orderedEvidenceIds: string[]"
+  },
+  "lead": {
+    "name": "RL Tours and Travels | Travel agency in Hyderabad",
+    "city": "Hyderabad",
+    "originalAnalysis": "evidence_fallback"
+  },
+  "existingWebsiteInspection": {
+    "at": "2026-11-23T06:39:11.973Z",
+    "findings": [
+      {
+        "id": "images",
+        "evidence": "8 image elements on the inspected page have missing or empty alternative text."
+      },
+      {
+        "id": "navigation",
+        "evidence": "2 navigation anchors have empty or placeholder destinations in the downloaded markup."
+      }
+    ]
+  },
+  "historicalRankings": 1,
+  "providerResponse": {
+    "at": "2026-11-23T17:03:19.756Z",
+    "httpStatus": 503,
+    "latencyMs": 1347,
+    "transportError": "ERR_BAD_RESPONSE",
+    "error": {
+      "code": 503,
+      "status": "UNAVAILABLE",
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "retryAfter": null,
+      "retryDelay": null,
+      "reasons": [],
+      "quotaViolations": []
+    }
+  },
+  "savedVerification": {
+    "id": "527c6315-6295-4347-aca3-8f6681f41441",
+    "provider": "gemini",
+    "status": "failed",
+    "httpStatus": 503,
+    "finishedAt": "2026-11-23T17:03:19.763Z",
+    "reason": null,
+    "message": "HTTP 503. Google returned an error without a specific diagnostic.",
+    "leadId": null,
+    "ranking": null
+  },
+  "validation": {
+    "schemaPassed": false,
+    "everyIdMatchesSavedEvidence": false,
+    "assessed": false
+  },
+  "crm": {
+    "httpStatus": 200,
+    "newRankingVisibleInApi": false,
+    "historicalRowsUnchanged": true,
+    "originalAnalysis": "evidence_fallback"
+  },
+  "integrity": {
+    "lead": {
+      "before": 18,
+      "after": 18,
+      "unchanged": true
+    },
+    "pitch": {
+      "before": 16,
+      "after": 16,
+      "unchanged": true
+    },
+    "auditReport": {
+      "before": 12,
+      "after": 12,
+      "unchanged": true
+    },
+    "notificationDelivery": {
+      "before": 0,
+      "after": 0,
+      "unchanged": true
+    },
+    "autoHunterConfig": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    },
+    "leadDiscoverySource": {
+      "before": 1,
+      "after": 1,
+      "unchanged": true
+    }
+  },
+  "externalOutreach": {
+    "schedulerEnabled": false,
+    "externalAlertsEnabled": false,
+    "email": false,
+    "telegram": false,
+    "deliveryRowsAfter": 0
+  },
+  "finishedAt": "2026-11-23T17:03:19.975Z",
+  "tests": {
+    "backend": {
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typescript": {
+      "backend": "passed",
+      "frontend": "passed"
+    }
+  },
+  "configuration": {
+    "model": "gemini-3.8-flash",
+    "changedFields": [
+      "GEMINI_MODEL"
+    ],
+    "reloadedBackend": true,
+    "frontendStayedRunning": true
+  }
+}
